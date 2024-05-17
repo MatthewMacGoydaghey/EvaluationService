@@ -8,13 +8,13 @@ export class User {
 @PrimaryGeneratedColumn()
 id: number
 
-@Column()
+@Column({ width: 100 })
 name: string
 
-@Column()
+@Column({ width: 30 })
 email: string
 
-@Column()
+@Column({ width: 20 })
 password: string
 
 

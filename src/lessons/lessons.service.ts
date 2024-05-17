@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Lesson } from '../lib/DTO/lessons/lessons-entity';
 import { Repository } from 'typeorm';
@@ -25,6 +25,10 @@ export class LessonsService {
 
 
   async createLesson(body: LessonDTO) {
+    const duplicate = await this.LessonsRepository.findOneBy({code: body.code})
+    if (duplicate) {
+      throw new BadRequestException({message: `Занятие с кодом ${body.code} уже существует`})
+    }
     return this.LessonsRepository.save(body)
   }
 

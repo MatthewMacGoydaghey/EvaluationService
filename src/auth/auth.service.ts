@@ -19,6 +19,7 @@ export class AuthService {
     if (!foundUser) {
       throw new NotFoundException({Message: `Пользователь с почтой ${email} не найден`})
     }
+    console.log(typeof password, typeof foundUser.password)
     if (!(password === foundUser.password)) {
       throw new ForbiddenException({Message: `Неверный пароль`})
     }

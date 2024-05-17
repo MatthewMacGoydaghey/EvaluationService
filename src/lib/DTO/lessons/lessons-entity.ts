@@ -7,10 +7,10 @@ export class Lesson {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column({ width: 100 })
   name: string
 
-  @Column()
+  @Column({ width: 20 })
   code: string
 
   @OneToMany(() => Evaluation, (evaluation) => evaluation.lesson)
