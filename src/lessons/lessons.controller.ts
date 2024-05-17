@@ -2,11 +2,13 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { LessonsService } from './lessons.service';
 import { LessonDTO } from '../lib/DTO/lessons/lessonsDTO';
 import { EvaluationDTO } from '../lib/DTO/evaluations/evaluationDTO';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Lesson } from '../lib/DTO/lessons/lessons-entity';
-import { Evaluation } from '../lib/DTO/evaluations/evaluation-entity';
+import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Lessons')
+@ApiHeader({
+  name: 'jwt',
+  description: 'Ввести полученный после авторизации JWT-token',
+})
 @Controller('lessons')
 export class LessonsController {
   constructor(
